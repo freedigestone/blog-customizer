@@ -25,7 +25,45 @@ const App = () => {
 					'--bg-color': defaultArticleState.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm />
+			<ArticleParamsForm
+				onApply={(params) => {
+					const rootEl = document.querySelector('main') as HTMLElement;
+					rootEl.style.setProperty(
+						'--font-family',
+						params.fontFamilyOption.value
+					);
+					rootEl.style.setProperty('--font-size', params.fontSizeOption.value);
+					rootEl.style.setProperty('--font-color', params.fontColor.value);
+					rootEl.style.setProperty(
+						'--container-width',
+						params.contentWidth.value
+					);
+					rootEl.style.setProperty('--bg-color', params.backgroundColor.value);
+				}}
+				onReset={() => {
+					const rootEl = document.querySelector('main') as HTMLElement;
+					rootEl.style.setProperty(
+						'--font-family',
+						defaultArticleState.fontFamilyOption.value
+					);
+					rootEl.style.setProperty(
+						'--font-size',
+						defaultArticleState.fontSizeOption.value
+					);
+					rootEl.style.setProperty(
+						'--font-color',
+						defaultArticleState.fontColor.value
+					);
+					rootEl.style.setProperty(
+						'--container-width',
+						defaultArticleState.contentWidth.value
+					);
+					rootEl.style.setProperty(
+						'--bg-color',
+						defaultArticleState.backgroundColor.value
+					);
+				}}
+			/>
 			<Article />
 		</main>
 	);
